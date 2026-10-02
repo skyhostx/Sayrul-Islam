@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sayrul Islam | Redirecting...</title>
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var parts = path.split('/').filter(Boolean);
+        if (window.location.hostname.endsWith('github.io') && parts.length > 0) {
+          window.location.replace('/' + parts[0] + '/');
+        } else {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body style="background:#090D16;color:#94a3b8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+    <p>Redirecting to Sayrul Islam Portfolio...</p>
+  </body>
+</html>
