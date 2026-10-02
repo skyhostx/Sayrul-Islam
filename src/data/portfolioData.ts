@@ -1,6 +1,8 @@
 import { ServiceItem, ProjectItem, SkillCategory, BlogPost, TestimonialItem, TimelineMilestone, FAQItem, PluginItem } from '../types';
 
 import portraitImg from '../assets/images/sayrul_islam_portrait_1787109025432.jpg';
+import heroPortraitImg from '../assets/images/sayrul_hero_portrait_1790833108022.jpg';
+import aboutPortraitImg from '../assets/images/sayrul_about_portrait_1790833120904.jpg';
 import ecommerceImg from '../assets/images/ecommerce_project_mockup_1787109040030.jpg';
 import saasImg from '../assets/images/saas_webapp_mockup_1787109051940.jpg';
 import landingImg from '../assets/images/agency_landing_mockup_1787109062922.jpg';
@@ -22,7 +24,8 @@ export const PERSONAL_INFO = {
   availability: 'Available for New Projects & Contracts',
   tagline: 'We Build High-Impact Digital Experiences.',
   agencyDescription: 'Sayrul Islam is a modern digital agency crafting minimal, fast, and conversion-focused websites for brands, startups, and creators. We design with purpose and build with precision.',
-  portraitImage: portraitImg,
+  portraitImage: heroPortraitImg || portraitImg,
+  aboutImage: aboutPortraitImg || portraitImg,
 };
 
 export const SERVICES: ServiceItem[] = [
