@@ -11,7 +11,7 @@ interface PortraitContextType {
 
 const PortraitContext = createContext<PortraitContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'sayrul_custom_portrait_v1';
+const STORAGE_KEY = 'sayrul_portrait_clean_v4';
 
 export const PortraitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [portraitUrl, setPortraitUrlState] = useState<string>(() => {
@@ -124,6 +124,35 @@ export const PortraitProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     };
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
+  }, []);
+
+  useEffect(() => {
+    // Automatically load photo if placed in the public/ folder
+    const checkPublicImages = async () => {
+      const candidates = [
+        '/Sayrul Islam.png', 
+        '/Sayrul%20Islam.png', 
+        '/sayrul.png', 
+        '/sayrul-islam.png', 
+        '/profile.png'
+      ];
+      for (const src of candidates) {
+        try {
+          const res = await fetch(src, { method: 'HEAD' });
+          if (res.ok) {
+            const ct = res.headers.get('content-type') || '';
+            if (ct.startsWith('image/')) {
+              setPortraitUrlState(src);
+              setIsCustom(true);
+              return;
+            }
+          }
+        } catch {
+          // ignore
+        }
+      }
+    };
+    checkPublicImages();
   }, []);
 
   return (

@@ -10,10 +10,7 @@ import {
   Zap, 
   Globe, 
   Award,
-  Download,
-  Camera,
-  RotateCcw,
-  UploadCloud
+  Download
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { usePortrait } from '../context/PortraitContext';
@@ -23,25 +20,8 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
-  const { portraitUrl, uploadFromFile, isCustom, resetPortrait } = usePortrait();
-  const fileInputRef = React.useRef<HTMLInputElement>(null);
-  const [isDragging, setIsDragging] = React.useState(false);
+  const { portraitUrl } = usePortrait();
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      await uploadFromFile(file);
-    }
-  };
-
-  const handleDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      await uploadFromFile(file);
-    }
-  };
   return (
     <section
       id="hero"
@@ -154,43 +134,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
           <div className="lg:col-span-5 flex justify-center relative">
             <div className="relative w-full max-w-[380px] sm:max-w-[420px]">
               
-              {/* Quick Helper Badge */}
-              <div className="mb-2.5 flex items-center justify-between px-1">
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="inline-flex items-center gap-1.5 text-xs text-amber-400/90 hover:text-amber-300 font-mono transition-colors cursor-pointer group"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-12 transition-transform" />
-                  <span>{isCustom ? 'Photo active (click to change)' : 'Click or drop Sayrul Islam.png here'}</span>
-                </button>
-                {isCustom && (
-                  <button
-                    type="button"
-                    onClick={resetPortrait}
-                    className="text-[11px] text-slate-400 hover:text-slate-200 underline font-mono cursor-pointer"
-                  >
-                    Reset
-                  </button>
-                )}
-              </div>
-
               {/* Outer Decorative Frame with Subtle Gold Border */}
-              <div 
-                className={`relative rounded-2xl overflow-hidden p-1.5 transition-all duration-300 shadow-2xl shadow-black/60 ${
-                  isDragging 
-                    ? 'bg-amber-400 scale-[1.02] shadow-amber-500/30' 
-                    : 'bg-gradient-to-b from-amber-500/40 via-slate-800 to-slate-900'
-                }`}
-                onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={handleDrop}
-              >
-                <div 
-                  className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[2/3] group cursor-pointer"
-                  onClick={() => fileInputRef.current?.click()}
-                  title="Click or drop your photo to update"
-                >
+              <div className="relative rounded-2xl overflow-hidden p-1.5 bg-gradient-to-b from-amber-500/40 via-slate-800 to-slate-900 shadow-2xl shadow-black/60">
+                <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[2/3] group">
                   
                   {/* Portrait of Sayrul Islam */}
                   <img
@@ -199,52 +145,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
                     alt="Sayrul Islam - Full Stack Web Developer & Digital Agency Founder"
                     className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = PERSONAL_INFO.portraitImage;
+                    }}
                   />
-
-                  {/* Active Drag Overlay */}
-                  {isDragging && (
-                    <div className="absolute inset-0 z-30 bg-slate-950/90 backdrop-blur-sm border-2 border-dashed border-amber-400 rounded-xl flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-150">
-                      <UploadCloud className="w-12 h-12 text-amber-400 mb-3 animate-bounce" />
-                      <p className="text-base font-heading font-bold text-white">Drop your photo here</p>
-                      <p className="text-xs text-amber-300/90 mt-1 font-mono">Instantly updates your profile photo</p>
-                    </div>
-                  )}
-
-                  {/* Hidden file input for photo upload */}
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="hero-photo-input"
-                  />
-
-                  {/* Floating Change Photo Action Button */}
-                  <div 
-                    className="absolute top-3 left-3 z-20 flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-white text-xs font-medium border border-amber-500/40 shadow-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                      title="Upload or change portrait photo"
-                    >
-                      <Camera className="w-3.5 h-3.5 text-amber-400" />
-                      <span>{isCustom ? 'Change Photo' : 'Upload Photo'}</span>
-                    </button>
-                    {isCustom && (
-                      <button
-                        type="button"
-                        onClick={resetPortrait}
-                        className="p-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 shadow-md backdrop-blur-md transition-all hover:scale-105 cursor-pointer"
-                        title="Reset to default portrait"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
 
                   {/* Gradient Overlay for bottom caption */}
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
