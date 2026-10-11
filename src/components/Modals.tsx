@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { ServiceItem, ProjectItem, BlogPost } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { usePortrait } from '../context/PortraitContext';
 
 // --- SERVICE MODAL ---
 interface ServiceModalProps {
@@ -240,6 +241,7 @@ interface BlogModalProps {
 }
 
 export const BlogModal: React.FC<BlogModalProps> = ({ article, onClose }) => {
+  const { portraitUrl } = usePortrait();
   if (!article) return null;
 
   return (
@@ -278,7 +280,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({ article, onClose }) => {
 
           <div className="flex items-center gap-3 pt-2">
             <img
-              src={article.author.avatar}
+              src={portraitUrl || article.author.avatar}
               alt={article.author.name}
               className="w-9 h-9 rounded-full object-cover border border-amber-500/40"
               referrerPolicy="no-referrer"

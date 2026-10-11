@@ -9,11 +9,23 @@ import {
   Award,
   Globe2,
   Calendar,
-  MessageSquare
+  MessageSquare,
+  Camera,
+  RotateCcw
 } from 'lucide-react';
 import { PERSONAL_INFO, TIMELINE } from '../data/portfolioData';
+import { usePortrait } from '../context/PortraitContext';
 
 export const AboutSection: React.FC = () => {
+  const { portraitUrl, uploadFromFile, isCustom, resetPortrait } = usePortrait();
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      await uploadFromFile(file);
+    }
+  };
   return (
     <section
       id="about"
@@ -41,13 +53,52 @@ export const AboutSection: React.FC = () => {
           
           {/* Left Column: Portrait & Agency Pillars */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl">
+            <div 
+              className="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl group cursor-pointer"
+              onClick={() => fileInputRef.current?.click()}
+              title="Click or drop your photo to update"
+            >
               <img
-                src={PERSONAL_INFO.aboutImage || PERSONAL_INFO.portraitImage}
+                src={portraitUrl || PERSONAL_INFO.aboutImage}
                 alt="Sayrul Islam - Full Stack Web Developer"
-                className="w-full aspect-[4/5] object-cover object-top"
+                className="w-full aspect-[4/5] sm:aspect-[2/3] object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="about-photo-input"
+              />
+
+              {/* Floating Change Photo Action Button */}
+              <div 
+                className="absolute top-3 left-3 z-20 flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-white text-xs font-medium border border-amber-500/40 shadow-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                  title="Upload or change portrait photo"
+                >
+                  <Camera className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isCustom ? 'Change Photo' : 'Upload Photo'}</span>
+                </button>
+                {isCustom && (
+                  <button
+                    type="button"
+                    onClick={resetPortrait}
+                    className="p-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 shadow-md backdrop-blur-md transition-all hover:scale-105"
+                    title="Reset to default portrait"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
               <div className="p-6 bg-slate-950/90 border-t border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-heading font-bold text-white text-lg">Sayrul Islam</span>

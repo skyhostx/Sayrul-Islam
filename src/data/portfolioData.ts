@@ -1,8 +1,7 @@
 import { ServiceItem, ProjectItem, SkillCategory, BlogPost, TestimonialItem, TimelineMilestone, FAQItem, PluginItem } from '../types';
 
 import portraitImg from '../assets/images/sayrul_islam_portrait_1787109025432.jpg';
-import heroPortraitImg from '../assets/images/sayrul_hero_portrait_1790833108022.jpg';
-import aboutPortraitImg from '../assets/images/sayrul_about_portrait_1790833120904.jpg';
+import sayrulDoubleExposurePhoto from '../assets/images/sayrul_portrait_1790832651445.jpg';
 import ecommerceImg from '../assets/images/ecommerce_project_mockup_1787109040030.jpg';
 import saasImg from '../assets/images/saas_webapp_mockup_1787109051940.jpg';
 import landingImg from '../assets/images/agency_landing_mockup_1787109062922.jpg';
@@ -24,8 +23,8 @@ export const PERSONAL_INFO = {
   availability: 'Available for New Projects & Contracts',
   tagline: 'We Build High-Impact Digital Experiences.',
   agencyDescription: 'Sayrul Islam is a modern digital agency crafting minimal, fast, and conversion-focused websites for brands, startups, and creators. We design with purpose and build with precision.',
-  portraitImage: heroPortraitImg || portraitImg,
-  aboutImage: aboutPortraitImg || portraitImg,
+  portraitImage: sayrulDoubleExposurePhoto,
+  aboutImage: sayrulDoubleExposurePhoto,
 };
 
 export const SERVICES: ServiceItem[] = [
@@ -325,7 +324,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: 'Sayrul Islam',
       role: 'Full Stack Engineer & Performance Specialist',
-      avatar: portraitImg
+      avatar: sayrulDoubleExposurePhoto
     },
     tags: ['WordPress', 'Core Web Vitals', 'PageSpeed', 'Caching', 'PHP'],
     views: 3420,
@@ -375,7 +374,7 @@ By utilizing Redis in-memory key-value caching alongside PHP OPcache, complex Wo
     author: {
       name: 'Sayrul Islam',
       role: 'Full Stack Developer',
-      avatar: portraitImg
+      avatar: sayrulDoubleExposurePhoto
     },
     tags: ['WooCommerce', 'UI/UX', 'Checkout', 'Conversion Rate', 'Payments'],
     views: 2890,
@@ -407,7 +406,7 @@ Average e-commerce stores lose over two-thirds of interested buyers at the final
     author: {
       name: 'Sayrul Islam',
       role: 'Lead Architect',
-      avatar: portraitImg
+      avatar: sayrulDoubleExposurePhoto
     },
     tags: ['PHP', 'React', 'REST API', 'Architecture', 'TypeScript'],
     views: 4120,
@@ -461,7 +460,7 @@ function sayrul_handle_quote_calculation($request) {
     author: {
       name: 'Sayrul Islam',
       role: 'SEO & Web Analyst',
-      avatar: portraitImg
+      avatar: sayrulDoubleExposurePhoto
     },
     tags: ['SEO', 'Schema.org', 'Robots.txt', 'Search Console', 'Indexation'],
     views: 2150,

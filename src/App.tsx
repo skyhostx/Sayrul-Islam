@@ -15,6 +15,7 @@ import { Footer } from './components/Footer';
 import { ServiceModal, ProjectModal, BlogModal } from './components/Modals';
 import { ServiceItem, ProjectItem, BlogPost } from './types';
 import { PERSONAL_INFO } from './data/portfolioData';
+import { PortraitProvider } from './context/PortraitContext';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
@@ -27,7 +28,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-[#F1F5F9] relative selection:bg-amber-500/20 selection:text-amber-300">
+    <PortraitProvider>
+      <div className="min-h-screen bg-[#090D16] text-[#F1F5F9] relative selection:bg-amber-500/20 selection:text-amber-300">
       
       {/* Navigation */}
       <Navbar />
@@ -103,5 +105,6 @@ export default function App() {
       </div>
 
     </div>
+  </PortraitProvider>
   );
 }
