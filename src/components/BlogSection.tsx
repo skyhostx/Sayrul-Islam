@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { BLOG_POSTS } from '../data/portfolioData';
 import { BlogPost } from '../types';
-import { usePortrait } from '../context/PortraitContext';
 
 interface BlogSectionProps {
   onSelectArticle: (article: BlogPost) => void;
@@ -22,7 +21,6 @@ interface BlogSectionProps {
 const CATEGORIES = ['All', 'Performance & SEO', 'Web Development', 'UI/UX & Conversion'] as const;
 
 export const BlogSection: React.FC<BlogSectionProps> = ({ onSelectArticle }) => {
-  const { portraitUrl } = usePortrait();
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [likesMap, setLikesMap] = useState<Record<string, number>>({});
@@ -160,12 +158,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onSelectArticle }) => 
                 {/* Footer: Author & Engagement */}
                 <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <img
-                      src={portraitUrl || post.author.avatar}
-                      alt={post.author.name}
-                      className="w-7 h-7 rounded-full object-cover border border-amber-500/40"
-                      referrerPolicy="no-referrer"
-                    />
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 font-mono font-black text-[11px] flex items-center justify-center border border-amber-300/40 shadow-sm shrink-0">
+                      SI
+                    </div>
                     <div>
                       <div className="text-xs font-bold text-slate-200">
                         {post.author.name}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { 
   ArrowRight, 
   MessageSquare, 
@@ -10,7 +10,8 @@ import {
   Zap, 
   Globe, 
   Award,
-  Download
+  Download,
+  Camera
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { usePortrait } from '../context/PortraitContext';
@@ -20,7 +21,25 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
-  const { portraitUrl } = usePortrait();
+  const { portraitUrl, uploadFromFile } = usePortrait();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      uploadFromFile(file);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      uploadFromFile(file);
+    }
+  };
 
   return (
     <section
@@ -134,8 +153,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
           <div className="lg:col-span-5 flex justify-center relative">
             <div className="relative w-full max-w-[380px] sm:max-w-[420px]">
               
-              {/* Outer Decorative Frame with Subtle Gold Border */}
-              <div className="relative rounded-2xl overflow-hidden p-1.5 bg-gradient-to-b from-amber-500/40 via-slate-800 to-slate-900 shadow-2xl shadow-black/60">
+              {/* Outer Decorative Frame with Subtle Gold Border & Interactive Drop/Click */}
+              <div 
+                className={`relative rounded-2xl overflow-hidden p-1.5 transition-all duration-300 shadow-2xl shadow-black/60 cursor-pointer ${
+                  isDragging 
+                    ? 'ring-4 ring-amber-400 scale-[1.02] bg-gradient-to-b from-amber-400 via-amber-600 to-amber-900' 
+                    : 'bg-gradient-to-b from-amber-500/40 via-slate-800 to-slate-900 hover:ring-2 hover:ring-amber-500/50'
+                }`}
+                onClick={() => fileInputRef.current?.click()}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+                title="Click or drop your photo to update"
+              >
+                {/* Hidden File Input for seamless click-to-upload */}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+
                 <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[2/3] group">
                   
                   {/* Portrait of Sayrul Islam */}
@@ -143,15 +185,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
                     id="sayrul-hero-portrait"
                     src={portraitUrl}
                     alt="Sayrul Islam - Full Stack Web Developer & Digital Agency Founder"
-                    className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).src = PERSONAL_INFO.portraitImage;
                     }}
                   />
 
+                  {/* Drag Active Overlay */}
+                  {isDragging && (
+                    <div className="absolute inset-0 bg-amber-500/30 backdrop-blur-sm flex flex-col items-center justify-center text-white font-medium p-4 text-center z-20">
+                      <Camera className="w-10 h-10 mb-2 animate-bounce text-amber-300" />
+                      <p className="text-sm font-bold">Drop photo to update!</p>
+                    </div>
+                  )}
+
+                  {/* Quick Change Hint (Subtle on hover) */}
+                  <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-amber-300 text-[11px] font-mono shadow-lg">
+                      <Camera className="w-3.5 h-3.5" />
+                      Click or drop to apply photo
+                    </span>
+                  </div>
+
                   {/* Gradient Overlay for bottom caption */}
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent flex flex-col justify-end p-4 z-10">
                     <div className="flex items-center justify-between">
                       <div>
                         <h2 className="text-base sm:text-lg font-heading font-bold text-white tracking-tight">

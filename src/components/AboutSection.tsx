@@ -47,7 +47,7 @@ export const AboutSection: React.FC = () => {
               <img
                 src={portraitUrl || PERSONAL_INFO.aboutImage}
                 alt="Sayrul Islam - Full Stack Web Developer"
-                className="w-full aspect-[4/5] sm:aspect-[2/3] object-cover object-center"
+                className="w-full aspect-[4/5] sm:aspect-[2/3] object-cover object-top"
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = PERSONAL_INFO.aboutImage || PERSONAL_INFO.portraitImage;

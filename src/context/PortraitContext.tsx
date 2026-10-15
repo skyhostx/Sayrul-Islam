@@ -11,7 +11,7 @@ interface PortraitContextType {
 
 const PortraitContext = createContext<PortraitContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'sayrul_portrait_clean_v4';
+const STORAGE_KEY = 'sayrul_portrait_real_v5';
 
 export const PortraitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [portraitUrl, setPortraitUrlState] = useState<string>(() => {
@@ -72,7 +72,9 @@ export const PortraitProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const ctx = canvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(img, 0, 0, width, height);
-          resolve(canvas.toDataURL('image/jpeg', 0.9));
+          const isPng = dataUrl.startsWith('data:image/png');
+          const mimeType = isPng ? 'image/png' : 'image/jpeg';
+          resolve(canvas.toDataURL(mimeType, 0.92));
         } else {
           resolve(dataUrl);
         }
