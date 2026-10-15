@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MessageSquare, Phone, ArrowUpRight } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesSection } from './components/ServicesSection';
@@ -85,24 +84,6 @@ export default function App() {
         article={selectedArticle}
         onClose={() => setSelectedArticle(null)}
       />
-
-      {/* Persistent Floating WhatsApp Speed Dial */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
-        <a
-          id="floating-whatsapp-widget"
-          href={PERSONAL_INFO.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm shadow-2xl shadow-emerald-500/40 border border-emerald-400/50 transition-all duration-300 hover:scale-105"
-        >
-          <div className="relative">
-            <MessageSquare className="w-5 h-5 fill-slate-950" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-white rounded-full animate-ping opacity-75" />
-          </div>
-          <span className="hidden sm:inline font-sans">Chat on WhatsApp</span>
-          <span className="sm:hidden font-sans">WhatsApp</span>
-        </a>
-      </div>
 
     </div>
   </PortraitProvider>

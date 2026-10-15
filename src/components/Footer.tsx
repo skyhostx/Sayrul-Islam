@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
     <footer id="main-footer" className="bg-[#060911] border-t border-slate-800 text-slate-400 text-sm">
       
       {/* Top CTA Bar */}
-      <div className="border-b border-slate-800/80 bg-gradient-to-r from-slate-900/60 via-slate-900 to-slate-900/60 py-12">
+      <div className="border-b border-slate-800/80 bg-gradient-to-r from-slate-900/60 via-slate-900 to-slate-900/60 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <h3 className="text-xl sm:text-2xl font-heading font-bold text-white">
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
           {/* Col 1 & 2: Brand Identity */}
@@ -87,11 +87,11 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 3: Services */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+          <div className="space-y-4">
+            <h4 className="text-sm sm:text-base font-heading font-bold text-white tracking-wide">
               Core Services
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-sm">
               {SERVICES.map((s) => (
                 <li key={s.id}>
                   <a href="#services" className="hover:text-amber-400 transition-colors">
@@ -103,11 +103,11 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 4: Quick Navigation */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+          <div className="space-y-4">
+            <h4 className="text-sm sm:text-base font-heading font-bold text-white tracking-wide">
               Explore
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-sm">
               <li><a href="#hero" className="hover:text-amber-400 transition-colors">Home &amp; Overview</a></li>
               <li><a href="#services" className="hover:text-amber-400 transition-colors">Core Services</a></li>
               <li><a href="#portfolio" className="hover:text-amber-400 transition-colors">Selected Portfolio</a></li>
@@ -118,8 +118,8 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 5: Guarantees & Status */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+          <div className="space-y-4">
+            <h4 className="text-sm sm:text-base font-heading font-bold text-white tracking-wide">
               Work Guarantee
             </h4>
             <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 text-xs">
@@ -136,7 +136,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Line */}
-        <div className="pt-12 mt-12 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-6 mt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
             &copy; {new Date().getFullYear()} <strong className="text-slate-400">Sayrul Islam</strong>. All rights reserved. &bull; <a href="https://sayrulislam.com" className="text-slate-400 hover:text-amber-400">sayrulislam.com</a>
           </div>

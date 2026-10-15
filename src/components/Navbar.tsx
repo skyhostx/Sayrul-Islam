@@ -21,6 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstima
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '#hero' },
     { name: 'Services', href: '#services' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Plugin', href: '#plugins' },
