@@ -5,8 +5,7 @@ import {
   Mail, 
   Phone, 
   Sparkles, 
-  ShieldCheck,
-  Code2
+  ShieldCheck
 } from 'lucide-react';
 import { PERSONAL_INFO, SERVICES } from '../data/portfolioData';
 import { Logo } from './Logo';
