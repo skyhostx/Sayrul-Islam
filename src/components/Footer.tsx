@@ -4,7 +4,6 @@ import {
   MessageSquare, 
   Mail, 
   Phone, 
-  Globe, 
   Sparkles, 
   ShieldCheck,
   Code2
@@ -72,10 +71,6 @@ export const Footer: React.FC = () => {
 
             <div className="pt-2 space-y-1.5 text-xs text-slate-400 font-mono">
               <div className="flex items-center gap-2">
-                <Globe className="w-3.5 h-3.5 text-sky-400" />
-                <a href="https://sayrulislam.com" className="text-slate-300 hover:text-amber-400">sayrulislam.com</a>
-              </div>
-              <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Whats-app: {PERSONAL_INFO.whatsappDisplay}</span>
               </div>
@@ -138,7 +133,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Line */}
         <div className="pt-6 mt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} <strong className="text-slate-400">Sayrul Islam</strong>. All rights reserved. &bull; <a href="https://sayrulislam.com" className="text-slate-400 hover:text-amber-400">sayrulislam.com</a>
+            &copy; {new Date().getFullYear()} <strong className="text-slate-400">Sayrul Islam</strong>. All rights reserved.
           </div>
 
           <div className="flex items-center gap-4">
