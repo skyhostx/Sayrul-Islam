@@ -51,6 +51,57 @@ export default function App() {
     };
   }, []);
 
+  // Dynamic SEO metadata synchronization on route change
+  useEffect(() => {
+    const PAGE_SEO: Record<PageRoute, { title: string; description: string; canonical: string }> = {
+      home: {
+        title: 'Sayrul Islam | Full Stack Web Developer & Digital Agency',
+        description: 'Experienced Full Stack Web Developer with 06+ years crafting minimal, fast, and conversion-focused websites, eCommerce, and scalable web applications.',
+        canonical: 'https://sayrulislam.com/',
+      },
+      services: {
+        title: 'Web Design & Development Services | Sayrul Islam Agency',
+        description: 'Explore specialized web design, custom WordPress plugins, WooCommerce stores, and full stack engineering services by Sayrul Islam. Transparent pricing & 30-day warranty.',
+        canonical: 'https://sayrulislam.com/services',
+      },
+      portfolio: {
+        title: 'Portfolio & Client Case Studies | Sayrul Islam',
+        description: 'Discover selected client works, case studies, and live projects engineered by Sayrul Islam with verified metrics, performance audits, and modern UI/UX.',
+        canonical: 'https://sayrulislam.com/portfolio',
+      },
+      plugins: {
+        title: 'Custom WordPress Plugins & Extensions | Sayrul Islam',
+        description: 'Specialized WordPress plugins engineered with zero bloat, PHP 8+ PSR standards, nonce authentication, and modern Gutenberg React interfaces.',
+        canonical: 'https://sayrulislam.com/plugins',
+      },
+      about: {
+        title: 'About Sayrul Islam | Founder & Full Stack Engineer',
+        description: 'Meet Sayrul Islam, Full Stack Web Developer and Digital Agency Founder with 06+ years of experience delivering 180+ web projects for global clients.',
+        canonical: 'https://sayrulislam.com/about',
+      },
+      contact: {
+        title: 'Contact & Start a Project | Sayrul Islam Agency',
+        description: 'Get in touch with Sayrul Islam for web design, eCommerce, and full-stack development contracts. Direct WhatsApp support with rapid responses.',
+        canonical: 'https://sayrulislam.com/contact',
+      },
+    };
+
+    const currentSeo = PAGE_SEO[currentPage];
+    if (currentSeo) {
+      document.title = currentSeo.title;
+      const descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta) descMeta.setAttribute('content', currentSeo.description);
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute('href', currentSeo.canonical);
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', currentSeo.canonical);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', currentSeo.title);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', currentSeo.description);
+    }
+  }, [currentPage]);
+
   const handleNavigate = (page: PageRoute) => {
     setCurrentPage(page);
     const targetPath = page === 'home' ? '/' : `/${page}`;
