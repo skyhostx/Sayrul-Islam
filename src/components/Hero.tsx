@@ -21,7 +21,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
-  const { portraitUrl, uploadFromFile } = usePortrait();
+  const { portraitUrl, uploadFromFile, isCustom } = usePortrait();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -200,12 +200,26 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
                     </div>
                   )}
 
-                  {/* Quick Change Hint (Subtle on hover) */}
-                  <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-amber-300 text-[11px] font-mono shadow-lg">
-                      <Camera className="w-3.5 h-3.5" />
-                      Click or drop to apply photo
-                    </span>
+                  {/* Quick Change Hint */}
+                  <div className="absolute top-3 left-3 z-10">
+                    {!isCustom ? (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          fileInputRef.current?.click();
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono shadow-lg shadow-amber-500/30 hover:bg-amber-400 transition-all hover:scale-105"
+                      >
+                        <Camera className="w-3.5 h-3.5" />
+                        <span>Select Sayrul Islam.png</span>
+                      </button>
+                    ) : (
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-amber-300 text-[11px] font-mono shadow-lg">
+                        <Camera className="w-3.5 h-3.5" />
+                        Click to change photo
+                      </span>
+                    )}
                   </div>
 
                   {/* Gradient Overlay for bottom caption */}
