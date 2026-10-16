@@ -29,6 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
     const file = e.target.files?.[0];
     if (file) {
       uploadFromFile(file);
+      e.target.value = '';
     }
   };
 
@@ -155,28 +156,32 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
               
               {/* Outer Decorative Frame with Subtle Gold Border & Interactive Drop/Click */}
               <div 
-                className={`relative rounded-2xl overflow-hidden p-1.5 transition-all duration-300 shadow-2xl shadow-black/60 cursor-pointer ${
+                className={`relative rounded-2xl overflow-hidden p-1.5 transition-all duration-300 shadow-2xl shadow-black/60 ${
                   isDragging 
                     ? 'ring-4 ring-amber-400 scale-[1.02] bg-gradient-to-b from-amber-400 via-amber-600 to-amber-900' 
                     : 'bg-gradient-to-b from-amber-500/40 via-slate-800 to-slate-900 hover:ring-2 hover:ring-amber-500/50'
                 }`}
-                onClick={() => fileInputRef.current?.click()}
                 onDragOver={(e) => {
                   e.preventDefault();
                   setIsDragging(true);
                 }}
                 onDragLeave={() => setIsDragging(false)}
                 onDrop={handleDrop}
-                title="Click or drop your photo to update"
               >
-                {/* Hidden File Input for seamless click-to-upload */}
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
+                {/* 100% Native Click Overlay using HTML Label (Never blocked by iframe sandboxes) */}
+                <label 
+                  htmlFor="hero-portrait-native-input"
+                  className="absolute inset-0 z-30 cursor-pointer"
+                  title="Click or drop your photo to update"
+                >
+                  <input
+                    id="hero-portrait-native-input"
+                    type="file"
+                    accept="image/*"
+                    className="sr-only"
+                    onChange={handleFileChange}
+                  />
+                </label>
 
                 <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[2/3] group">
                   
@@ -201,19 +206,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator }) => {
                   )}
 
                   {/* Quick Change Hint */}
-                  <div className="absolute top-3 left-3 z-10">
+                  <div className="absolute top-3 left-3 z-30 pointer-events-none">
                     {!isCustom ? (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          fileInputRef.current?.click();
-                        }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono shadow-lg shadow-amber-500/30 hover:bg-amber-400 transition-all hover:scale-105"
-                      >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono shadow-lg shadow-amber-500/30">
                         <Camera className="w-3.5 h-3.5" />
                         <span>Select Sayrul Islam.png</span>
-                      </button>
+                      </div>
                     ) : (
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-amber-300 text-[11px] font-mono shadow-lg">
                         <Camera className="w-3.5 h-3.5" />

@@ -254,7 +254,13 @@ export const PortraitProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       reader.onload = async () => {
         if (typeof reader.result === 'string') {
           const rawDataUrl = reader.result;
-          await setPortraitUrl(rawDataUrl);
+          setPortraitUrlState(rawDataUrl);
+          setIsCustom(true);
+          try {
+            await setPortraitUrl(rawDataUrl);
+          } catch {
+            // fallback
+          }
           resolve();
         } else {
           reject(new Error('Failed to read image file'));
