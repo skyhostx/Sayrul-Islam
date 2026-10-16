@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { MessageSquare, Menu, X, Phone, ArrowUpRight, Sparkles } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { Logo } from './Logo';
+import { PageRoute } from '../types';
 
 interface NavbarProps {
+  activePage: PageRoute;
+  onNavigate: (page: PageRoute) => void;
   onOpenContactModal?: () => void;
   onOpenEstimator?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstimator }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  activePage,
+  onNavigate,
+  onOpenContactModal,
+  onOpenEstimator,
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,49 +28,65 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstima
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Plugin', href: '#plugins' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+  const navLinks: { name: string; page: PageRoute; href: string }[] = [
+    { name: 'Home', page: 'home', href: '#/' },
+    { name: 'Services', page: 'services', href: '#/services' },
+    { name: 'Portfolio', page: 'portfolio', href: '#/portfolio' },
+    { name: 'Plugin', page: 'plugins', href: '#/plugins' },
+    { name: 'About', page: 'about', href: '#/about' },
+    { name: 'Contact', page: 'contact', href: '#/contact' },
   ];
+
+  const handleLinkClick = (e: React.MouseEvent, page: PageRoute) => {
+    e.preventDefault();
+    onNavigate(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#090D16]/90 backdrop-blur-md border-b border-slate-800/80 py-3 shadow-lg shadow-black/30'
-          : 'bg-transparent py-5'
+          ? 'bg-[#090D16]/95 backdrop-blur-md border-b border-slate-800/80 py-3 shadow-lg shadow-black/40'
+          : 'bg-[#090D16]/80 backdrop-blur-sm py-4 border-b border-slate-800/40'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo using user's official header logo */}
-        <a
+        <button
+          type="button"
           id="nav-logo"
-          href="#"
-          className="flex items-center gap-3 group focus:outline-none py-1"
+          onClick={(e) => handleLinkClick(e, 'home')}
+          className="flex items-center gap-3 group focus:outline-none py-1 text-left"
         >
           <Logo size="md" variant="light" />
           <span className="hidden xl:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span>
             Available
           </span>
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
         <nav id="desktop-nav" className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="px-3 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors duration-150"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activePage === link.page;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.page)}
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-150 ${
+                  isActive
+                    ? 'text-amber-400 bg-amber-500/15 border border-amber-500/30 font-semibold shadow-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Action Buttons */}
@@ -81,14 +105,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstima
           </a>
 
           {/* Hire Me / Quote CTA */}
-          <a
+          <button
+            type="button"
             id="nav-cta-btn"
-            href="#contact"
+            onClick={(e) => handleLinkClick(e, 'contact')}
             className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-md shadow-amber-500/20 transition-all duration-200 hover:-translate-y-0.5"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Start a Project</span>
-          </a>
+          </button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -124,16 +149,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstima
           </div>
 
           <div className="space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activePage === link.page;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.page)}
+                  className={`block px-3 py-2.5 rounded-lg text-base font-medium transition-colors ${
+                    isActive
+                      ? 'text-amber-400 bg-amber-500/15 border border-amber-500/30 font-semibold'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
 
           <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-2">
@@ -146,14 +178,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal, onOpenEstima
               <MessageSquare className="w-4 h-4" />
               Chat on WhatsApp ({PERSONAL_INFO.whatsappDisplay})
             </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              type="button"
+              onClick={(e) => handleLinkClick(e, 'contact')}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500 text-slate-950 text-sm font-bold shadow-lg shadow-amber-500/20"
             >
               <span>Get Free Quote / Contact</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       )}

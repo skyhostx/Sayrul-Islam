@@ -106,3 +106,5 @@ export interface PluginItem {
   githubUrl?: string;
   demoUrl?: string;
 }
+
+export type PageRoute = 'home' | 'services' | 'portfolio' | 'plugins' | 'about' | 'contact';

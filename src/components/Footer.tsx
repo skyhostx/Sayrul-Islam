@@ -9,10 +9,23 @@ import {
 } from 'lucide-react';
 import { PERSONAL_INFO, SERVICES } from '../data/portfolioData';
 import { Logo } from './Logo';
+import { PageRoute } from '../types';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (page: PageRoute) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNav = (e: React.MouseEvent, page: PageRoute) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(page);
+      scrollToTop();
+    }
   };
 
   return (
@@ -88,7 +101,11 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-sm">
               {SERVICES.map((s) => (
                 <li key={s.id}>
-                  <a href="#services" className="hover:text-amber-400 transition-colors">
+                  <a 
+                    href="#/services" 
+                    onClick={(e) => handleNav(e, 'services')}
+                    className="hover:text-amber-400 transition-colors"
+                  >
                     {s.title}
                   </a>
                 </li>
@@ -102,12 +119,12 @@ export const Footer: React.FC = () => {
               Explore
             </h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#hero" className="hover:text-amber-400 transition-colors">Home &amp; Overview</a></li>
-              <li><a href="#services" className="hover:text-amber-400 transition-colors">Core Services</a></li>
-              <li><a href="#portfolio" className="hover:text-amber-400 transition-colors">Selected Portfolio</a></li>
-              <li><a href="#plugins" className="hover:text-amber-400 transition-colors">Custom Plugins</a></li>
-              <li><a href="#about" className="hover:text-amber-400 transition-colors">About Sayrul Islam</a></li>
-              <li><a href="#contact" className="hover:text-amber-400 transition-colors">Contact &amp; Inquiry</a></li>
+              <li><a href="#/" onClick={(e) => handleNav(e, 'home')} className="hover:text-amber-400 transition-colors">Home &amp; Overview</a></li>
+              <li><a href="#/services" onClick={(e) => handleNav(e, 'services')} className="hover:text-amber-400 transition-colors">Core Services</a></li>
+              <li><a href="#/portfolio" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-amber-400 transition-colors">Selected Portfolio</a></li>
+              <li><a href="#/plugins" onClick={(e) => handleNav(e, 'plugins')} className="hover:text-amber-400 transition-colors">Custom Plugins</a></li>
+              <li><a href="#/about" onClick={(e) => handleNav(e, 'about')} className="hover:text-amber-400 transition-colors">About Sayrul Islam</a></li>
+              <li><a href="#/contact" onClick={(e) => handleNav(e, 'contact')} className="hover:text-amber-400 transition-colors">Contact &amp; Inquiry</a></li>
             </ul>
           </div>
 
