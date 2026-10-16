@@ -102,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {SERVICES.map((s) => (
                 <li key={s.id}>
                   <a 
-                    href="#/services" 
+                    href="/services" 
                     onClick={(e) => handleNav(e, 'services')}
                     className="hover:text-amber-400 transition-colors"
                   >
@@ -119,12 +119,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Explore
             </h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#/" onClick={(e) => handleNav(e, 'home')} className="hover:text-amber-400 transition-colors">Home &amp; Overview</a></li>
-              <li><a href="#/services" onClick={(e) => handleNav(e, 'services')} className="hover:text-amber-400 transition-colors">Core Services</a></li>
-              <li><a href="#/portfolio" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-amber-400 transition-colors">Selected Portfolio</a></li>
-              <li><a href="#/plugins" onClick={(e) => handleNav(e, 'plugins')} className="hover:text-amber-400 transition-colors">Custom Plugins</a></li>
-              <li><a href="#/about" onClick={(e) => handleNav(e, 'about')} className="hover:text-amber-400 transition-colors">About Sayrul Islam</a></li>
-              <li><a href="#/contact" onClick={(e) => handleNav(e, 'contact')} className="hover:text-amber-400 transition-colors">Contact &amp; Inquiry</a></li>
+              <li><a href="/" onClick={(e) => handleNav(e, 'home')} className="hover:text-amber-400 transition-colors">Home &amp; Overview</a></li>
+              <li><a href="/services" onClick={(e) => handleNav(e, 'services')} className="hover:text-amber-400 transition-colors">Core Services</a></li>
+              <li><a href="/portfolio" onClick={(e) => handleNav(e, 'portfolio')} className="hover:text-amber-400 transition-colors">Selected Portfolio</a></li>
+              <li><a href="/plugins" onClick={(e) => handleNav(e, 'plugins')} className="hover:text-amber-400 transition-colors">Custom Plugins</a></li>
+              <li><a href="/about" onClick={(e) => handleNav(e, 'about')} className="hover:text-amber-400 transition-colors">About Sayrul Islam</a></li>
+              <li><a href="/contact" onClick={(e) => handleNav(e, 'contact')} className="hover:text-amber-400 transition-colors">Contact &amp; Inquiry</a></li>
             </ul>
           </div>
 

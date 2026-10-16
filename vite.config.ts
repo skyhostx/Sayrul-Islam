@@ -58,7 +58,7 @@ const savePortraitPlugin = (): Plugin => ({
 
 export default defineConfig(() => {
   return {
-    base: './',
+    base: '/',
     plugins: [react(), tailwindcss(), savePortraitPlugin()],
     resolve: {
       alias: {

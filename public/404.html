@@ -7,16 +7,19 @@
     <script>
       (function() {
         var path = window.location.pathname;
-        var parts = path.split('/').filter(Boolean);
-        if (window.location.hostname.endsWith('github.io') && parts.length > 0) {
-          window.location.replace('/' + parts[0] + '/');
-        } else {
-          window.location.replace('/');
-        }
+        var query = window.location.search;
+        var hash = window.location.hash;
+        var segments = path.split('/').filter(Boolean);
+        var base = (window.location.hostname.endsWith('github.io') && segments.length > 0)
+          ? '/' + segments[0] + '/'
+          : '/';
+        var route = path.replace(base, '').replace(/^\/+/, '');
+        var redirectUrl = base + '?p=/' + encodeURIComponent(route) + (query ? '&' + query.slice(1) : '') + hash;
+        window.location.replace(redirectUrl);
       })();
     </script>
   </head>
   <body style="background:#090D16;color:#94a3b8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
-    <p>Redirecting to Sayrul Islam Portfolio...</p>
+    <p>Loading Sayrul Islam Portfolio...</p>
   </body>
 </html>

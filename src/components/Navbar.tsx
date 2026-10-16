@@ -29,12 +29,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks: { name: string; page: PageRoute; href: string }[] = [
-    { name: 'Home', page: 'home', href: '#/' },
-    { name: 'Services', page: 'services', href: '#/services' },
-    { name: 'Portfolio', page: 'portfolio', href: '#/portfolio' },
-    { name: 'Plugin', page: 'plugins', href: '#/plugins' },
-    { name: 'About', page: 'about', href: '#/about' },
-    { name: 'Contact', page: 'contact', href: '#/contact' },
+    { name: 'Home', page: 'home', href: '/' },
+    { name: 'Services', page: 'services', href: '/services' },
+    { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
+    { name: 'Plugin', page: 'plugins', href: '/plugins' },
+    { name: 'About', page: 'about', href: '/about' },
+    { name: 'Contact', page: 'contact', href: '/contact' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent, page: PageRoute) => {

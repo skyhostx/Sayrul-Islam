@@ -12,41 +12,55 @@ import { ServiceItem, ProjectItem, BlogPost, PageRoute } from './types';
 import { PortraitProvider } from './context/PortraitContext';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageRoute>(() => {
+  const getPageFromLocation = (): PageRoute => {
     try {
-      const hash = window.location.hash.replace('#/', '').replace('#', '').toLowerCase();
-      if (['home', 'services', 'portfolio', 'plugins', 'about', 'contact'].includes(hash)) {
+      // 1. Check pathname first (clean URL: /services, /portfolio, etc.)
+      const path = window.location.pathname.replace(/^\/+/, '').split('/')[0].toLowerCase();
+      if (['services', 'portfolio', 'plugins', 'about', 'contact'].includes(path)) {
+        return path as PageRoute;
+      }
+      // 2. Check hash fallback (e.g. #/services or #services)
+      const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+      if (['services', 'portfolio', 'plugins', 'about', 'contact'].includes(hash)) {
         return hash as PageRoute;
       }
     } catch {
       // ignore
     }
     return 'home';
-  });
+  };
+
+  const [currentPage, setCurrentPage] = useState<PageRoute>(getPageFromLocation);
 
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<BlogPost | null>(null);
   const [formInitialMessage, setFormInitialMessage] = useState<string>('');
 
-  // Synchronize route with browser hash for bookmarks and back/forward navigation
+  // Synchronize route with browser history for clean URLs, bookmarks, and back/forward navigation
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#/', '').replace('#', '').toLowerCase();
-      if (['home', 'services', 'portfolio', 'plugins', 'about', 'contact'].includes(hash)) {
-        setCurrentPage(hash as PageRoute);
-      } else if (!hash) {
-        setCurrentPage('home');
-      }
+    const handleLocationChange = () => {
+      setCurrentPage(getPageFromLocation());
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const handleNavigate = (page: PageRoute) => {
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '#/' : `#/${page}`;
+    const targetPath = page === 'home' ? '/' : `/${page}`;
+    try {
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ page }, '', targetPath);
+      }
+    } catch {
+      window.location.hash = page === 'home' ? '' : `#/${page}`;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
