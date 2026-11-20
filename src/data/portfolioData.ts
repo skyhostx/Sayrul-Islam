@@ -589,91 +589,15 @@ export const FAQS: FAQItem[] = [
 
 export const PLUGINS: PluginItem[] = [
   {
-    id: 'sayrul-woospeed',
-    name: 'Sayrul WooSpeed Checkout',
-    badge: 'WooCommerce / E-Commerce',
-    category: 'E-Commerce',
-    shortDescription: 'High-conversion, single-page frictionless checkout for WooCommerce with instant AJAX validation, address autocomplete, and auto-currency conversion.',
-    fullDescription: 'Sayrul WooSpeed Checkout replaces default clunky multi-step WooCommerce checkouts with a lightning-fast single-page flow engineered to reduce abandoned carts. Features dynamic address lookup, inline coupon validation, multi-currency switching, and custom thank-you routing.',
-    version: 'v2.4.1',
-    downloads: '14.8K+',
-    activeInstalls: '3.2K+',
-    rating: 4.9,
-    compatibility: 'WordPress 6.2 - 6.7+ | WooCommerce 8.x - 9.x | PHP 8.1 - 8.3',
-    features: [
-      '1-Step Frictionless Checkout Layout',
-      'Instant AJAX Form Validation & Zip Autocomplete',
-      'Direct WhatsApp Order Notification Webhook',
-      'Custom Multi-Currency & Stripe Elements Integration',
-      'Zero Layout Shift & Under 40ms Execution Overhead'
-    ],
-    techStack: ['PHP 8.2', 'WooCommerce Hooks', 'Vanilla JS', 'Tailwind CSS', 'REST API'],
-    demoUrl: '#contact'
+    id: 'crypto-checkout-pro',
+    name: 'Crypto Checkout Pro',
+    shortDescription: 'Accept cryptocurrency payments seamlessly at checkout with a fast, reliable WordPress plugin.',
+    downloadUrl: 'https://urly.bd/uNn1E',
   },
   {
-    id: 'sayrul-cache-speed',
-    name: 'WP Ultra-Cache & Asset Minifier',
-    badge: 'Performance & Speed',
-    category: 'Optimization',
-    shortDescription: 'Advanced server-level caching engine that defers non-critical CSS/JS, generates WebP images on the fly, and guarantees 95+ Core Web Vitals.',
-    fullDescription: 'Custom-built for speed-critical client sites. Unlike generic bloated caching plugins, WP Ultra-Cache eliminates render-blocking assets, pre-warms page caches, connects with Redis object caching, and optimizes database queries on schedule.',
-    version: 'v1.9.0',
-    downloads: '22.4K+',
-    activeInstalls: '5.1K+',
-    rating: 5.0,
-    compatibility: 'WordPress 6.0+ | All Themes & Builders | PHP 8.0 - 8.3',
-    features: [
-      'Automated Critical CSS Extraction & Pre-generation',
-      'Zero Render-Blocking Script Deferral Engine',
-      'Lossless WebP Image Serving on Request',
-      'Redis & Memcached Direct Object Cache Connection',
-      'Automated Heartbeat & Database Transient Cleaner'
-    ],
-    techStack: ['PHP 8.x', 'Server Caching', 'Object Cache', 'WebP Library', 'HTTP/2 & HTTP/3'],
-    demoUrl: '#contact'
+    id: 'easy-to-change-contact-info',
+    name: 'Easy to Change Contact info',
+    shortDescription: 'Quickly update and manage your website contact details from one simple settings panel.',
+    downloadUrl: 'https://urly.bd/8Jq01',
   },
-  {
-    id: 'sayrul-whatsapp-speed-dial',
-    name: 'Smart WhatsApp Direct Speed Dial',
-    badge: 'Lead Generation',
-    category: 'Conversion',
-    shortDescription: 'Multi-agent floating WhatsApp speed dial with custom greetings, analytics conversion tracking, and intelligent page-context message generators.',
-    fullDescription: 'Bridges website visitors with your sales team in seconds. Automatically populates chat messages with the current service or product page title, tracks clicks in Google Analytics 4, and supports business hour availability toggles.',
-    version: 'v3.1.2',
-    downloads: '38.6K+',
-    activeInstalls: '8.4K+',
-    rating: 4.9,
-    compatibility: 'WordPress & Any CMS | 100% Mobile Responsive',
-    features: [
-      'Multi-Agent Department Routing (Sales, Support, Custom)',
-      'Pre-populated Dynamic Message Prompts from Current URL',
-      'Google Analytics 4 & Meta Pixel Event Tracking',
-      'Working Hours Availability Badge & Auto-reply Prompts',
-      'Feather-light: Zero External Font/CSS Dependencies (<6KB)'
-    ],
-    techStack: ['PHP', 'WordPress REST', 'SVG Icons', 'Vanilla JS', 'GA4 Events'],
-    demoUrl: '#contact'
-  },
-  {
-    id: 'sayrul-schema-rich-seo',
-    name: 'Dynamic Schema & JSON-LD Architect',
-    badge: 'SEO & Structured Data',
-    category: 'SEO',
-    shortDescription: 'Automated Schema.org structured data injector for Articles, Products, Organizations, Local Businesses, and interactive FAQ snippets.',
-    fullDescription: 'Empower your site with rich snippets in Google search results. Automatically generates valid Schema.org JSON-LD microdata for breadcrumbs, author credentials, product ratings, FAQs, and enterprise business details with zero manual code.',
-    version: 'v2.0.5',
-    downloads: '19.2K+',
-    activeInstalls: '4.6K+',
-    rating: 4.8,
-    compatibility: 'WordPress 6.0+ | Google Search Console Tested | PHP 8.1+',
-    features: [
-      'Automated FAQ Accordion to JSON-LD Schema Hook',
-      'Full WooCommerce Product Schema with Reviews & Stock',
-      'Person & Organization Authority Microdata',
-      'Google Rich Results & Search Console 100% Error-Free',
-      'Built-in Schema Validator Previewer'
-    ],
-    techStack: ['PHP 8.x', 'JSON-LD', 'Schema.org Standards', 'WordPress API'],
-    demoUrl: '#contact'
-  }
 ];

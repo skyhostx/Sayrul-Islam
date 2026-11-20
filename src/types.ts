@@ -92,19 +92,8 @@ export interface FAQItem {
 export interface PluginItem {
   id: string;
   name: string;
-  badge: string;
-  category: string;
   shortDescription: string;
-  fullDescription: string;
-  version: string;
-  downloads: string;
-  activeInstalls: string;
-  rating: number;
-  compatibility: string;
-  features: string[];
-  techStack: string[];
-  githubUrl?: string;
-  demoUrl?: string;
+  downloadUrl: string;
 }
 
 export type PageRoute = 'home' | 'services' | 'portfolio' | 'plugins' | 'about' | 'contact';
