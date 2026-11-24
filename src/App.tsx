@@ -4,7 +4,6 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PortfolioPage } from './pages/PortfolioPage';
-import { PluginsPage } from './pages/PluginsPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { ServiceModal, ProjectModal, BlogModal } from './components/Modals';
@@ -16,12 +15,12 @@ export default function App() {
     try {
       // 1. Check pathname first (clean URL: /services, /portfolio, etc.)
       const path = window.location.pathname.replace(/^\/+/, '').split('/')[0].toLowerCase();
-      if (['services', 'portfolio', 'plugins', 'about', 'contact'].includes(path)) {
+      if (['services', 'portfolio', 'about', 'contact'].includes(path)) {
         return path as PageRoute;
       }
       // 2. Check hash fallback (e.g. #/services or #services)
       const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-      if (['services', 'portfolio', 'plugins', 'about', 'contact'].includes(hash)) {
+      if (['services', 'portfolio', 'about', 'contact'].includes(hash)) {
         return hash as PageRoute;
       }
     } catch {
@@ -61,18 +60,13 @@ export default function App() {
       },
       services: {
         title: 'Web Design & Development Services | Sayrul Islam Agency',
-        description: 'Explore specialized web design, custom WordPress plugins, WooCommerce stores, and full stack engineering services by Sayrul Islam. Transparent pricing & 30-day warranty.',
+        description: 'Explore specialized web design, WordPress development, WooCommerce stores, and full stack engineering services by Sayrul Islam. Transparent pricing & 30-day warranty.',
         canonical: 'https://sayrulislam.com/services',
       },
       portfolio: {
         title: 'Portfolio & Client Case Studies | Sayrul Islam',
         description: 'Discover selected client works, case studies, and live projects engineered by Sayrul Islam with verified metrics, performance audits, and modern UI/UX.',
         canonical: 'https://sayrulislam.com/portfolio',
-      },
-      plugins: {
-        title: 'Custom WordPress Plugins & Extensions | Sayrul Islam',
-        description: 'Specialized WordPress plugins engineered with zero bloat, PHP 8+ PSR standards, nonce authentication, and modern Gutenberg React interfaces.',
-        canonical: 'https://sayrulislam.com/plugins',
       },
       about: {
         title: 'About Sayrul Islam | Founder & Full Stack Engineer',
@@ -120,11 +114,6 @@ export default function App() {
     handleNavigate('contact');
   };
 
-  const handleRequestPlugin = (pluginName: string) => {
-    setFormInitialMessage(`Hi Sayrul, I am interested in custom development / setup for your plugin: ${pluginName}.`);
-    handleNavigate('contact');
-  };
-
   return (
     <PortraitProvider>
       <div className="min-h-screen bg-[#090D16] text-[#F1F5F9] relative selection:bg-amber-500/20 selection:text-amber-300 flex flex-col justify-between">
@@ -142,7 +131,6 @@ export default function App() {
               onSelectService={(service) => setSelectedService(service)}
               onSelectProject={(project) => setSelectedProject(project)}
               onSelectArticle={(article) => setSelectedArticle(article)}
-              onRequestPlugin={handleRequestPlugin}
               onApplyEstimate={handleApplyEstimate}
               onNavigate={handleNavigate}
               formInitialMessage={formInitialMessage}
@@ -160,13 +148,6 @@ export default function App() {
           {currentPage === 'portfolio' && (
             <PortfolioPage
               onSelectProject={(project) => setSelectedProject(project)}
-              onNavigate={handleNavigate}
-            />
-          )}
-
-          {currentPage === 'plugins' && (
-            <PluginsPage
-              onRequestPlugin={handleRequestPlugin}
               onNavigate={handleNavigate}
             />
           )}

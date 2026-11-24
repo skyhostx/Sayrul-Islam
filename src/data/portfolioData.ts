@@ -1,4 +1,4 @@
-import { ServiceItem, ProjectItem, SkillCategory, BlogPost, TestimonialItem, TimelineMilestone, FAQItem, PluginItem } from '../types';
+import { ServiceItem, ProjectItem, SkillCategory, BlogPost, TestimonialItem, TimelineMilestone, FAQItem } from '../types';
 
 import portraitImg from '../assets/images/sayrul_islam_portrait_1787109025432.jpg';
 import sayrulPortraitImg from '../assets/images/sayrul_portrait_1790832651445.jpg';
@@ -276,7 +276,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     description: 'Scalable server architectures, custom CMS engines, secure APIs, and database engineering.',
     skills: [
       { name: 'PHP 8.x & OOP Architecture', level: 95, years: '6+ yrs', highlight: true },
-      { name: 'WordPress Custom Themes & Plugins', level: 98, years: '6+ yrs', highlight: true },
+      { name: 'WordPress Custom Themes & Development', level: 98, years: '6+ yrs', highlight: true },
       { name: 'Node.js & Express.js', level: 86, years: '4+ yrs' },
       { name: 'RESTful API & Webhooks', level: 92, years: '5+ yrs', highlight: true },
       { name: 'MySQL & PostgreSQL Databases', level: 90, years: '5+ yrs' },
@@ -548,7 +548,7 @@ export const TIMELINE: TimelineMilestone[] = [
     title: 'Senior Full Stack & WordPress Engineer',
     company: 'Global Digital Agency & Freelance Consultant',
     description: 'Delivered 90+ custom web applications, complex eCommerce stores, and API integrations with 99% client satisfaction rating.',
-    tags: ['PHP 8.x', 'Custom Plugins', 'Tailwind CSS', 'Performance Tuning', 'MySQL']
+    tags: ['PHP 8.x', 'WordPress Architecture', 'Tailwind CSS', 'Performance Tuning', 'MySQL']
   },
   {
     year: '2019 - 2021',
@@ -584,74 +584,5 @@ export const FAQS: FAQItem[] = [
     question: 'How are project payments structured?',
     answer: 'Typically, projects are split into milestones: 50% initial deposit to begin work, and 50% upon final testing, client approval, and live deployment. We accept international bank transfers, Wise, Stripe, and PayPal.',
     category: 'Billing'
-  }
-];
-
-export const PLUGINS: PluginItem[] = [
-  {
-    id: 'crypto-checkout-pro',
-    name: 'Crypto Checkout Pro',
-    badge: 'WooCommerce Payment Gateway',
-    category: 'E-Commerce & Payments',
-    shortDescription: 'Modern WooCommerce Cryptocurrency Payment Gateway Pro enabling store owners to accept 7 major cryptocurrencies directly at checkout with auto-generated QR codes, one-click wallet copy, and Transaction ID verification.',
-    fullDescription: 'Crypto Checkout Pro is a lightweight, zero-bloat WooCommerce payment gateway built for accepting direct wallet-to-wallet cryptocurrency payments without third-party gateway fees. Buyers select their preferred cryptocurrency at checkout, scan the auto-generated QR code or copy the wallet address with one click, and submit their verified Transaction ID (TXID). Both the selected coin and Transaction ID are automatically validated, saved to order metadata, and displayed in a dedicated panel inside your WooCommerce Order Admin page.',
-    version: 'v4.1.8',
-    author: 'Sayrul Islam',
-    license: 'Free / GPLv2+',
-    fileSize: '4.4 KB (.zip)',
-    requires: 'WordPress 5.8+ & WooCommerce',
-    compatibility: 'WordPress 5.8 - 6.7+ | WooCommerce 7.x - 9.x | PHP 7.4 - 8.3',
-    downloadUrl: 'https://urly.bd/uNn1E',
-    supportedItemsLabel: 'Supported Cryptocurrencies (7 Coins)',
-    supportedItems: ['Bitcoin (BTC)', 'Ethereum (ETH)', 'Tether (USDT)', 'Solana (SOL)', 'TRON (TRX)', 'Litecoin (LTC)', 'Dogecoin (DOGE)'],
-    features: [
-      'Direct Multi-Coin WooCommerce Payment Gateway (BTC, ETH, USDT, SOL, TRX, LTC, DOGE)',
-      'Auto-Generated Scannable QR Code for Every Configured Wallet Address',
-      'One-Click Copy Wallet Address Button with Instant Visual Confirmation',
-      'Strict Transaction ID (TXID) Validation (20–200 Alphanumeric Characters)',
-      'Dedicated "Crypto Payment Details" Panel in WooCommerce Order Admin',
-      'Automatic On-Hold Status, Stock Reduction, Cart Clear & Safe Cache Flush'
-    ],
-    installationSteps: [
-      'Click "Download Plugin" to download the Crypto Checkout Pro .zip package.',
-      'In WordPress Admin, go to Plugins → Add New → Upload Plugin, select the .zip file, and click Activate.',
-      'Navigate to WooCommerce → Settings → Payments → Crypto Checkout (or click the Settings link on the Plugins list).',
-      'Enable Crypto Checkout, set your checkout title, add your crypto wallet addresses, and save changes.'
-    ],
-    adminMenuPath: 'WooCommerce → Settings → Payments → Crypto Checkout',
-    techStack: ['PHP 8.x', 'WooCommerce Gateway API', 'jQuery', 'Auto QR Code', 'Responsive CSS']
-  },
-  {
-    id: 'easy-to-change-contact-info',
-    name: 'Easy to Change Contact info',
-    badge: 'WooCommerce Product Utility',
-    category: 'Lead Generation & Support',
-    shortDescription: 'Modern dynamic contact info box displayed automatically above the Add to Cart button on WooCommerce simple and variable product pages, with centralized one-click updates and live QR codes.',
-    fullDescription: 'Easy to Change Contact info lets WooCommerce store owners display a clean, responsive contact card directly above the Add to Cart button (and variation selectors) across every product page. Instead of editing products one by one, manage your Telegram, WhatsApp, Microsoft Teams, and Email details from a single WordPress Dashboard panel. Includes automatic scannable QR code cards for Telegram and WhatsApp, smart input formatting, and theme-agnostic responsive styling.',
-    version: 'v4.1.7',
-    author: 'Sayrul Islam',
-    license: 'Free / GPLv2+',
-    fileSize: '5.4 KB (.zip)',
-    requires: 'WordPress 5.2+ & WooCommerce',
-    compatibility: 'WordPress 5.2 - 6.7+ | WooCommerce 6.x - 9.x | PHP 7.4 - 8.3',
-    downloadUrl: 'https://urly.bd/8Jq01',
-    supportedItemsLabel: 'Supported Contact Channels',
-    supportedItems: ['Telegram (@username + QR)', 'WhatsApp (Click-to-Chat + QR)', 'Microsoft Teams (Invite Link)', 'Direct Email (mailto:)'],
-    features: [
-      'Centralized WordPress Dashboard Settings Menu ("Contact Info") for Global Updates',
-      'Auto-Displays Above Add to Cart on Simple & Variable WooCommerce Products',
-      'Built-in Scannable QR Code Cards for Both Telegram & WhatsApp',
-      'Smart Input Validation & Auto-Formatting (WhatsApp Numbers & Telegram Handles)',
-      'Theme-Safe Isolated CSS Reset — Fully Responsive on Desktop, Tablet & Mobile',
-      'One-Click "Settings" Shortcut Directly on the WordPress Plugins Page'
-    ],
-    installationSteps: [
-      'Click "Download Plugin" to download the Easy to Change Contact info .zip package.',
-      'In WordPress Admin, go to Plugins → Add New → Upload Plugin, select the .zip file, and click Activate.',
-      'Open "Contact Info" from the WordPress Dashboard sidebar (or click Settings under the plugin).',
-      'Enter your Telegram username, WhatsApp number, Microsoft Teams link/name, and Email, then click Save Settings.'
-    ],
-    adminMenuPath: 'WordPress Dashboard → Contact Info → Save Settings',
-    techStack: ['PHP 8.x', 'WordPress Settings API', 'WooCommerce Hooks', 'Auto QR Generator', 'Responsive CSS']
   }
 ];

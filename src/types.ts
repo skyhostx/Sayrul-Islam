@@ -89,28 +89,4 @@ export interface FAQItem {
   category: string;
 }
 
-export interface PluginItem {
-  id: string;
-  name: string;
-  badge: string;
-  category: string;
-  shortDescription: string;
-  fullDescription: string;
-  version: string;
-  author: string;
-  license: string;
-  fileSize: string;
-  requires: string;
-  compatibility: string;
-  downloadUrl: string;
-  supportedItemsLabel: string;
-  supportedItems: string[];
-  features: string[];
-  installationSteps: string[];
-  adminMenuPath: string;
-  techStack: string[];
-  githubUrl?: string;
-  demoUrl?: string;
-}
-
-export type PageRoute = 'home' | 'services' | 'portfolio' | 'plugins' | 'about' | 'contact';
+export type PageRoute = 'home' | 'services' | 'portfolio' | 'about' | 'contact';

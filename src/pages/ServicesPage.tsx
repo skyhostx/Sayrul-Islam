@@ -54,7 +54,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         badge="Sayrul Islam • Agency Services"
         title="Specialized Web Engineering &"
         highlightedWord="Digital Services"
-        description="From bespoke modern web design and high-converting eCommerce stores to custom WordPress plugins and scalable web applications, explore our end-to-end engineering solutions."
+        description="From bespoke modern web design and high-converting eCommerce stores to custom WordPress development and scalable web applications, explore our end-to-end engineering solutions."
         currentPage="services"
         onNavigate={onNavigate}
       />

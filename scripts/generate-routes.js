@@ -9,18 +9,13 @@ const distDir = path.resolve(__dirname, '../dist');
 const PAGE_METADATA = {
   services: {
     title: 'Web Design & Development Services | Sayrul Islam Agency',
-    description: 'Explore specialized web design, custom WordPress plugins, WooCommerce stores, and full stack engineering services by Sayrul Islam. Transparent pricing & 30-day warranty.',
+    description: 'Explore specialized web design, WordPress development, WooCommerce stores, and full stack engineering services by Sayrul Islam. Transparent pricing & 30-day warranty.',
     canonical: 'https://sayrulislam.com/services',
   },
   portfolio: {
     title: 'Portfolio & Client Case Studies | Sayrul Islam',
     description: 'Discover selected client works, case studies, and live projects engineered by Sayrul Islam with verified metrics, performance audits, and modern UI/UX.',
     canonical: 'https://sayrulislam.com/portfolio',
-  },
-  plugins: {
-    title: 'Custom WordPress Plugins & Extensions | Sayrul Islam',
-    description: 'Specialized WordPress plugins engineered with zero bloat, PHP 8+ PSR standards, nonce authentication, and modern Gutenberg React interfaces.',
-    canonical: 'https://sayrulislam.com/plugins',
   },
   about: {
     title: 'About Sayrul Islam | Founder & Full Stack Engineer',

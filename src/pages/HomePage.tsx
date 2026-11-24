@@ -2,7 +2,6 @@ import React from 'react';
 import { Hero } from '../components/Hero';
 import { ServicesSection } from '../components/ServicesSection';
 import { ProjectsSection } from '../components/ProjectsSection';
-import { PluginsSection } from '../components/PluginsSection';
 import { SkillsSection } from '../components/SkillsSection';
 import { AboutSection } from '../components/AboutSection';
 import { EstimatorSection } from '../components/EstimatorSection';
@@ -16,7 +15,6 @@ interface HomePageProps {
   onSelectService: (service: ServiceItem) => void;
   onSelectProject: (project: ProjectItem) => void;
   onSelectArticle: (article: BlogPost) => void;
-  onRequestPlugin: (name: string) => void;
   onApplyEstimate: (summary: string) => void;
   onNavigate: (page: PageRoute) => void;
   formInitialMessage: string;
@@ -26,7 +24,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onSelectService,
   onSelectProject,
   onSelectArticle,
-  onRequestPlugin,
   onApplyEstimate,
   onNavigate,
   formInitialMessage,
@@ -72,25 +69,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </div>
 
-      {/* 4. WordPress Plugins Section with Direct Single-Page Link */}
-      <div className="relative">
-        <PluginsSection onRequestPlugin={onRequestPlugin} />
-        <div className="max-w-7xl mx-auto px-4 text-center -mt-8 pb-16">
-          <button
-            type="button"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              onNavigate('plugins');
-            }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 hover:text-white hover:border-amber-400 text-sm font-semibold transition-all shadow-lg hover:scale-105"
-          >
-            <span>Browse Full WordPress Plugin Catalog</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* 5. Technical Stack & Skills */}
+      {/* 4. Technical Stack & Skills */}
       <SkillsSection />
 
       {/* 6. About Sayrul Islam Section */}

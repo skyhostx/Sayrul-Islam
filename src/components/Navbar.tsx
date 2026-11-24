@@ -32,7 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Home', page: 'home', href: '/' },
     { name: 'Services', page: 'services', href: '/services' },
     { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
-    { name: 'Plugin', page: 'plugins', href: '/plugins' },
     { name: 'About', page: 'about', href: '/about' },
     { name: 'Contact', page: 'contact', href: '/contact' },
   ];
